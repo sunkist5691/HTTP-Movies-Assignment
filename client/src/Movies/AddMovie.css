@@ -1,0 +1,21 @@
+.add___movie {
+   display: flex;
+   justify-content: center;
+}
+
+.add___movie form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 15%;
+}
+
+.add___movie label {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+}
+
+.add___movie p, button {
+   margin-top: 8%;
+}
