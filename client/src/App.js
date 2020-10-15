@@ -11,20 +11,30 @@ const App = () => {
   const [savedList, setSavedList] = useState([]);
   const [movieList, setMovieList] = useState([]);
 
-  const getMovieList = () => {
+  useEffect(() => {
     axios
       .get("http://localhost:5000/api/movies")
-      .then(res => setMovieList(res.data))
+      .then(res => {
+        console.log(res.data)
+        setMovieList(res.data)
+      })
       .catch(err => console.log(err.response));
-  };
+  },[])
+
 
   const addToSavedList = movie => {
     setSavedList([...savedList, movie]);
   };
 
-  useEffect(() => {
-    getMovieList();
-  }, [movieList]);
+  const deleteFromMovieList = (value) => {
+    setMovieList(movieList.filter((eachMovie) => {
+      return eachMovie.id !== value.id
+    }))
+  }
+
+  const addToMovieList = (value) => {
+    setMovieList(value)
+  }
 
   return (
     <>
@@ -39,11 +49,14 @@ const App = () => {
       </Route>
 
       <Route path='/add-movie'>
-        <AddMovie />
+        <AddMovie addToMovieList={addToMovieList}/>
       </Route>
 
       <Route path="/movies/:id">
-        <Movie addToSavedList={addToSavedList} setMovieList={setMovieList} />
+        <Movie 
+          addToSavedList={addToSavedList} 
+          deleteFromMovieList={deleteFromMovieList}
+        />
       </Route>
     </>
   );

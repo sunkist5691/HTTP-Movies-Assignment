@@ -19,10 +19,12 @@ function UpdateMovie({movieList, setMovieList}) {
       axios
          .get(`http://localhost:5000/api/movies/${id}`)
          .then(res => {
-            res.data.star = res.data.stars.join(',')
+            res.data.stars = res.data.stars.join(',')
             setValue(res.data)
          })
-   },[id])
+   },[])
+
+   console.log(value)
 
    const handleChange = (e) => {
 
@@ -34,7 +36,6 @@ function UpdateMovie({movieList, setMovieList}) {
 
    const handleSubmit = (e) => {
       e.preventDefault()
-
       value.stars = value.stars.split(',')
 
       axios

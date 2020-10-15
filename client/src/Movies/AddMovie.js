@@ -3,7 +3,7 @@ import axios from 'axios'
 import './AddMovie.css'
 import { useHistory } from 'react-router-dom'
 
-function AddMovie() {
+function AddMovie({addToMovieList}) {
 
    const history = useHistory();
 
@@ -33,7 +33,7 @@ function AddMovie() {
          .post(`http://localhost:5000/api/movies`, value)
          .then(res => {
             console.log(res)
-
+            addToMovieList(res.data)
             setValue({
                id: Date.now(),
                title: '',
