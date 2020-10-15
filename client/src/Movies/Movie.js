@@ -7,6 +7,7 @@ function Movie({ addToSavedList, deleteFromMovieList }) {
   const [movie, setMovie] = useState(null);
   const params = useParams();
   const history = useHistory();
+  console.log(params.id)
 
   useEffect(() => {
 

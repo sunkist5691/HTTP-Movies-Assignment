@@ -36,6 +36,7 @@ const App = () => {
     setMovieList(value)
   }
 
+  console.log(movieList)
   return (
     <>
       <SavedList list={savedList} />
